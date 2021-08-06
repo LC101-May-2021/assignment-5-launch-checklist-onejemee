@@ -34,25 +34,26 @@ function formSubmission(document, listStatus, pilot, copilot, fuelLevel, cargoLe
     let fuelStatus = document.getElementById("fuelStatus");
     let cargoStatus = document.getElementById("cargoStatus");
     // let listStatus = document.getElementById("faultyItems")
-           if (validateInput(pilot.value) === "Empty" || validateInput(copilot.value) === "Empty" || validateInput(fuelLevel.value) === "Empty" || validateInput(cargoLevel.value) === "Empty") {
+           if (validateInput(pilot) === "Empty" || validateInput(copilot) === "Empty" || validateInput(fuelLevel) === "Empty" || validateInput(cargoLevel) === "Empty") {
               alert("All fields are required!");
-           } else if (validateInput(pilot.value) === "Is a Number" || validateInput(copilot.value) === "Is a Number" || validateInput(fuelLevel.value) === "Not a Number" || validateInput(cargoLevel.value) === "Not a Number" ) {
+              console.log()
+           } else if (validateInput(pilot) === "Is a Number" || validateInput(copilot) === "Is a Number" || validateInput(fuelLevel) === "Not a Number" || validateInput(cargoLevel) === "Not a Number" ) {
                 alert("You need to give proper data types!")
            } else {
             listStatus.style.visibility = "visible"
-            pilotStatus.innerHTML = `Pilot ${pilot.value} is ready for launch`
-            copilotStatus.innerHTML = `Co-pilot ${copilot.value} is ready for launch`
-               if (fuelLevel.value < 10000 && cargoLevel.value <= 10000) {
+            pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`
+            copilotStatus.innerHTML = `Co-pilot ${copilot} is ready for launch`
+               if (fuelLevel < 10000 && cargoLevel <= 10000) {
                     fuelStatus.innerHTML = `Fuel level too low for launch`
                     cargoStatus.innerHTML = `Cargo mass low enough for launch`
                     launchStatus.style.color = "rgb(199, 37, 78)"
                     launchStatus.innerHTML = `Shuttle Not Ready for Launch`
-                } else if (fuelLevel.value >= 10000 && cargoLevel.value > 10000) { 
+                } else if (fuelLevel >= 10000 && cargoLevel > 10000) { 
                     cargoStatus.innerHTML = `Cargo mass too heavy for launch`
                     fuelStatus.innerHTML = `Fuel level high enough for launch`
                     launchStatus.style.color = "rgb(199, 37, 78)"
                     launchStatus.innerHTML = `Shuttle Not Ready for Launch` 
-                } else if (fuelLevel.value < 10000 && cargoLevel.value > 10000) {
+                } else if (fuelLevel < 10000 && cargoLevel > 10000) {
                     cargoStatus.innerHTML = `Cargo mass too heavy for launch`
                     fuelStatus.innerHTML = `Fuel level too low for launch`
                     launchStatus.style.color = "rgb(199, 37, 78)"
@@ -67,7 +68,7 @@ function formSubmission(document, listStatus, pilot, copilot, fuelLevel, cargoLe
                 }
 
     
-        console.log(`${pilot.value}  ${fuelLevel.value}  ${copilot.value} ${cargoLevel.value}`)
+        // console.log(`${pilot.value}  ${fuelLevel.value}  ${copilot.value} ${cargoLevel.value}`)
 }
 
 async function myFetch() {
@@ -90,4 +91,5 @@ module.exports.validateInput = validateInput;
 module.exports.formSubmission = formSubmission;
 module.exports.pickPlanet = pickPlanet; 
 module.exports.myFetch = myFetch;
+
 
